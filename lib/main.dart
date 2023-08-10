@@ -54,34 +54,35 @@ class _MyListViewPageState extends State<MyListViewPage> {
           child: Text('POST'),
         ),
       ),
-      body:_data.isNotEmpty ? ListView.builder(
-        itemCount: _data.length,
-        itemBuilder: (BuildContext context, int index) {
-          return GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => PostDetails()),
-                  ).then((_) {
-                    fetchData();
-                  });
-            },
-            //padding: const EdgeInsets.all(8.0),
-            child: Card(
-              color: Colors.grey[200],
-              child: ListTile(
-                title: Text(
-                  '${_data[index]['id']}: ${_data[index]['title']}',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
+      body: _data.isNotEmpty
+          ? ListView.builder(
+              itemCount: _data.length,
+              itemBuilder: (BuildContext context, int index) {
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PostDetails()),
+                    ).then((_) {
+                      fetchData();
+                    });
+                  },
+                  //padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    color: Colors.grey[200],
+                    child: ListTile(
+                      title: Text(
+                        '${_data[index]['id']}: ${_data[index]['title']}',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            ),
-          );
-        },
-      ) : const Center(child: CircularProgressIndicator()),
+                );
+              },
+            )
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 }
